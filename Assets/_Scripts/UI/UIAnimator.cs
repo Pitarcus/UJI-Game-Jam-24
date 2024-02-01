@@ -1,10 +1,12 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
+[System.Serializable]
 public class UIAnimator : MonoBehaviour
 {
     public enum UIAnimationType
@@ -12,10 +14,12 @@ public class UIAnimator : MonoBehaviour
         scale,
         move,
         alpha
+
     }
 
     [Header("References")]
     [SerializeField] public CanvasGroup canvasGroup;
+    [SerializeField] public RectTransform transformToMove;
 
     [Header("Parameters")]
     [SerializeField] public UIAnimationType animationType;
@@ -23,17 +27,26 @@ public class UIAnimator : MonoBehaviour
     [SerializeField] public DG.Tweening.Ease easingType;
     [SerializeField] public float delay;
     [SerializeField] public bool animateOnEnable;
+    [SerializeField] public bool playInverted = false;
 
     [SerializeField] public UnityEvent onUIAnimationFinished;
 
     [Header("Parameters for Alpha")]
-    [SerializeField] public bool showCanvasGroup = false;
+
+    [Header("Parameters for Move")]
+    [SerializeField] public Vector2 toPosition;
+    private Vector2 _originalPosition;
+
 
     private void OnEnable()
     {
         if(animateOnEnable)
         {
             AnimateUI();
+        }
+        if(animationType == UIAnimationType.move) 
+        {
+            _originalPosition = transformToMove.anchoredPosition;
         }
     }
 
@@ -45,10 +58,11 @@ public class UIAnimator : MonoBehaviour
                 break;
 
             case UIAnimationType.move:
+                MoveTransform();
                 break; 
 
             case UIAnimationType.alpha:
-                ShowGroup(showCanvasGroup);
+                AnimateGroupAlpha();
                 break;
         }
     }
@@ -58,10 +72,22 @@ public class UIAnimator : MonoBehaviour
         onUIAnimationFinished?.Invoke();
     }
 
-    #region AlphaAnimation
-    private void ShowGroup(bool show)
+    #region MoveAnimation
+
+    private void MoveTransform()
     {
-        if (show)
+        if(!playInverted)
+            transformToMove.DOAnchorPos(toPosition, transitionTime).SetEase(easingType).SetDelay(delay).OnComplete(UIAnimationFinishedInvoke);
+        else
+            transformToMove.DOAnchorPos(_originalPosition, transitionTime).SetEase(easingType).SetDelay(delay).OnComplete(UIAnimationFinishedInvoke);
+    }
+
+    #endregion
+
+    #region AlphaAnimation
+    private void AnimateGroupAlpha()
+    {
+        if (!playInverted)
         {
             TweenAlpha(0, 1, transitionTime);
         }
@@ -91,6 +117,7 @@ public class UIAnimatorEditor : Editor
 {
     // references
     SerializedProperty canvasGroup;
+    SerializedProperty transformToMove;
 
     // properties
     SerializedProperty animationType;
@@ -98,9 +125,11 @@ public class UIAnimatorEditor : Editor
     SerializedProperty transitionTime;
     SerializedProperty delay;
     SerializedProperty animateOnEnable;
+    SerializedProperty playInverted;
 
-    // alpha specific properties
-    SerializedProperty showCanvasGroup;
+
+    // move specific properties
+    SerializedProperty toPosition;
 
     // events
     SerializedProperty onUIAnimationFinished;
@@ -112,13 +141,17 @@ public class UIAnimatorEditor : Editor
         myScript = target as UIAnimator;
 
         canvasGroup = serializedObject.FindProperty("canvasGroup");
+        transformToMove = serializedObject.FindProperty("transformToMove");
+
         animationType = serializedObject.FindProperty("animationType");
         easingType = serializedObject.FindProperty("easingType");
         transitionTime = serializedObject.FindProperty("transitionTime");
         delay = serializedObject.FindProperty("delay");
         animateOnEnable = serializedObject.FindProperty("animateOnEnable");
+        playInverted = serializedObject.FindProperty("playInverted");
 
-        showCanvasGroup = serializedObject.FindProperty("showCanvasGroup");
+
+        toPosition = serializedObject.FindProperty("toPosition");
 
         onUIAnimationFinished = serializedObject.FindProperty("onUIAnimationFinished");
     }
@@ -131,6 +164,11 @@ public class UIAnimatorEditor : Editor
         if (myScript.animationType == UIAnimator.UIAnimationType.alpha)
         {
             EditorGUILayout.PropertyField(canvasGroup);
+
+        }
+        else if (myScript.animationType == UIAnimator.UIAnimationType.move)
+        {
+            EditorGUILayout.PropertyField(transformToMove);
         }
 
         EditorGUILayout.Space(5);
@@ -141,13 +179,15 @@ public class UIAnimatorEditor : Editor
         EditorGUILayout.PropertyField(easingType);
         EditorGUILayout.PropertyField(delay);
         EditorGUILayout.PropertyField(animateOnEnable);
+        EditorGUILayout.PropertyField(playInverted);
+        
 
         EditorGUILayout.Space(5);
 
         // Type sensitive parameters
-        if (myScript.animationType == UIAnimator.UIAnimationType.alpha)
+        if (myScript.animationType == UIAnimator.UIAnimationType.move)
         {
-            EditorGUILayout.PropertyField(showCanvasGroup);
+            EditorGUILayout.PropertyField(toPosition);
         }
 
         EditorGUILayout.Space(5);

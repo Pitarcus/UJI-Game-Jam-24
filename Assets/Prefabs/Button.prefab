@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3714477290211735914}
   - component: {fileID: 7803173444300376977}
   - component: {fileID: 4962535074526187139}
+  - component: {fileID: 247342058914712891}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -164,6 +165,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+        - m_Target: {fileID: 247342058914712891}
+          m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
+          m_MethodName: Play
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
   - eventID: 1
     callback:
       m_PersistentCalls:
@@ -180,6 +193,37 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &247342058914712891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069008424693557720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -2085080615
+      Data2: 1143952126
+      Data3: -723123780
+      Data4: 1755384144
+    Path: event:/SFX/UI_Select
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &2397274655376775203
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,15 +466,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 4200612312542674511}
+  transformToMove: {fileID: 0}
   animationType: 2
   transitionTime: 0.2
   easingType: 4
   delay: 0
   animateOnEnable: 0
+  playInverted: 0
   onUIAnimationFinished:
     m_PersistentCalls:
       m_Calls: []
-  showCanvasGroup: 1
+  toPosition: {x: 0, y: 0}
 --- !u!114 &8295860572608887639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,11 +490,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 4200612312542674511}
+  transformToMove: {fileID: 0}
   animationType: 2
   transitionTime: 0.2
   easingType: 4
   delay: 0
   animateOnEnable: 0
+  playInverted: 0
   onUIAnimationFinished:
     m_PersistentCalls:
       m_Calls:
@@ -464,7 +512,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  showCanvasGroup: 0
+  toPosition: {x: 0, y: 0}
 --- !u!1 &5424335172266896859
 GameObject:
   m_ObjectHideFlags: 0
