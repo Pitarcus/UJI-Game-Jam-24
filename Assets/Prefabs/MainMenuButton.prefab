@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4962535074526187139}
   - component: {fileID: 247342058914712891}
   m_Layer: 5
-  m_Name: Button
+  m_Name: MainMenuButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -208,11 +208,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -2085080615
-      Data2: 1143952126
-      Data3: -723123780
-      Data4: 1755384144
-    Path: event:/SFX/UI_Select
+      Data1: -1788775725
+      Data2: 1296738593
+      Data3: 35084687
+      Data4: -1816344125
+    Path: event:/SFX/UI_Select_Important
   Event: 
   PlayEvent: 0
   StopEvent: 0
