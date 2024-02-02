@@ -15,7 +15,7 @@ public class UIAnimatorSequence : MonoBehaviour
     //[SerializeField] bool playInverted = false;
     [SerializeField] [Tooltip("Invert the animations on each call of the sequence")] bool toggleInverted = false;
 
-    private bool invertedSequence = false;
+    //private bool invertedSequence = false;
     private bool playedOnce = false;
 
     private void OnEnable()

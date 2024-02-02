@@ -1,0 +1,16 @@
+// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel ClearRT
+
+// Create a RenderTexture with enableRandomWrite flag and set it
+// with cs.SetTexture
+RWTexture3D<float> Result;
+
+float Value;
+
+[numthreads(8,8,8)]
+void ClearRT (uint3 id : SV_DispatchThreadID)
+{
+    Result[id] = Value;
+}
+
+
