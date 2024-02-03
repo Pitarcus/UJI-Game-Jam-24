@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private MovementState movementState;
     [SerializeField] public float moveSpeed;
     [SerializeField] public float groundDrag;
+    [SerializeField] public bool freezeRotation;
 
     [Space]
 
@@ -53,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         _rb = GetComponent<Rigidbody>();
-        _rb.freezeRotation = true;
+        _rb.freezeRotation = freezeRotation;
     }
 
     private void MovementInput()

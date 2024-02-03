@@ -35,7 +35,7 @@ MonoBehaviour:
   staticWindXZMultiplier: 1
   staticWindBladeHashIntensity: 0.4
   dynamicWindStrength: 1.2
-  dynamicWindNoiseStrength: 1
-  playerPositionModifierX: 1
-  playerPositionModifierY: 3.35
-  playerPositionModifierZ: 1
+  dynamicWindNoiseStrength: 1.5
+  playerPositionModifierX: 2
+  playerPositionModifierY: 1
+  playerPositionModifierZ: 2
