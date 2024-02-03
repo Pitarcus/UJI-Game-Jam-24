@@ -20,6 +20,19 @@ public class StickyBallMechanic : MonoBehaviour
 
     private int currentLevel = 0;   // Index to the levelLimits array
 
+    public static StickyBallMechanic Instance;
+
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
