@@ -47,8 +47,7 @@ public class StickableObject : MonoBehaviour
         StickableObject stickableObject = other.gameObject.GetComponent<StickableObject>();
         if (stickableObject != null)
         {
-            stickyBall.IncreaseSize(stickableObject.size);
-            stickableObject.ManageObjectStuck();
+            stickyBall.IncreaseSize(stickableObject.size, stickableObject);
         }
     }
 

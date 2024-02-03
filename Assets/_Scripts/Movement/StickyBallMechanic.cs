@@ -46,28 +46,29 @@ public class StickyBallMechanic : MonoBehaviour
         {
             // TODO: check size, if size is inside the range, get points and keep growing
             // Also check if there is an evolution point, (maybe every 20/30 points?)
-
-            if(collisionObject.size <= sizeLevel)
-            {
-                IncreaseSize(collisionObject.size);
-                collisionObject.ManageObjectStuck();
-            }
-
-            Debug.Log(currentLevel);
-
-            if (currentLevel <= levelLimits.Length - 1)
-            {
-                if (sizeLevel >= levelLimits[currentLevel])
-                {
-                    IncreaseLevel();
-                }
-            }
+            IncreaseSize(collisionObject.size, collisionObject);
+            
         }
     }
 
-    public void IncreaseSize(int size)
+    public void IncreaseSize(int size, StickableObject collisionObject)
     {
-        sizeLevel += size;
+
+        if (size <= sizeLevel)
+        {
+            sizeLevel += size;
+            collisionObject.ManageObjectStuck();
+        }
+
+        Debug.Log(levelLimits.Length);
+        if (currentLevel < levelLimits.Length)
+        {
+            Debug.Log("Checking current level limits");
+            if (sizeLevel >= levelLimits[currentLevel])
+            {
+                IncreaseLevel();
+            }
+        }
 
         onIncreaseSize.Invoke(sizeLevel);
     }
@@ -77,7 +78,7 @@ public class StickyBallMechanic : MonoBehaviour
     public void IncreaseLevel()
     {
         currentLevel += 1;
-
+        Debug.Log(currentLevel);
         _sphereCollider.radius = ballColliderSizes[currentLevel - 1];
         _ballMovement.moveSpeed += 2;
 
