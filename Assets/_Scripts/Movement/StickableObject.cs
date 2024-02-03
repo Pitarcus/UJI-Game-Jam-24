@@ -10,15 +10,54 @@ public class StickableObject : MonoBehaviour
 
     private Collider stickCollider;
 
+    private bool canStick = false;
+
+    private StickyBallMechanic stickyBall;
+
 
     private void Awake()
     {
         stickCollider = GetComponent<Collider>();
+        stickyBall = GameObject.FindGameObjectWithTag("StickyBall").GetComponent<StickyBallMechanic>();
     }
-    public void ManageObjectStuck(Transform ballTransform)
+
+    //public void ManageObjectStuck(Transform ballTransform)
+    //{
+    //    stickCollider.isTrigger = true;
+
+    //    transform.parent = ballTransform;
+    //}
+
+    public void ManageObjectStuck()
     {
         stickCollider.isTrigger = true;
 
-        transform.parent = ballTransform;
+        transform.parent = stickyBall.transform;
+
+        stickyBall.onLevelUp.AddListener(SetToCanStick);
+    }
+
+
+    // When entering another object it is available for sticking
+    private void OnTriggerEnter(Collider other)
+    {
+        if(!canStick)
+            return;
+
+        StickableObject stickableObject = other.gameObject.GetComponent<StickableObject>();
+        if (stickableObject != null)
+        {
+            stickyBall.IncreaseSize(stickableObject.size);
+            stickableObject.ManageObjectStuck();
+        }
+    }
+
+    public void SetToCanStick(int currentLevel)
+    {
+        if (size < stickyBall.levelLimits[currentLevel -1] * 0.25f)
+        {
+            canStick = true;
+            stickyBall.onLevelUp.RemoveListener(SetToCanStick);
+        }
     }
 }

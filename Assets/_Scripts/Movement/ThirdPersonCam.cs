@@ -13,7 +13,9 @@ public class ThirdPersonCam : MonoBehaviour
 
     [Header("RollingBallGameParameters")]
     [SerializeField] private float radius;
-
+    [SerializeField] private float[] radiusPerLevel;    // Starting from the first upgrade level
+    [SerializeField] private float transitionTime;
+    [Space]
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float movementSpeed;
 
@@ -40,5 +42,16 @@ public class ThirdPersonCam : MonoBehaviour
 
         _playerGeo.forward = Vector3.Slerp(_playerGeo.forward, viewDir.normalized, Time.deltaTime * rotationSpeed);
         _playerGeo.position = Vector3.Lerp(_playerGeo.position, _rb.transform.position - _orientation.forward * radius, movementSpeed);
+    }
+
+    public void IncreasePositionRadius(int currentLevel)
+    {
+        radius = radiusPerLevel[currentLevel - 1];
+        DOVirtual.Float(radius, radiusPerLevel[currentLevel - 1], transitionTime, RadiusSetter);
+    }
+
+    private void RadiusSetter(float value)
+    {
+        radius = value;
     }
 }

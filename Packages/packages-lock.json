@@ -10,6 +10,15 @@
       },
       "hash": "9d1b6a81ee7a0bf3d3e23027131f6482b2428bcc"
     },
+    "com.singularitygroup.hotreload": {
+      "version": "file:com.singularitygroup.hotreload",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.unity.ugui": "1.0.0",
+        "com.unity.modules.unitywebrequest": "1.0.0"
+      }
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
