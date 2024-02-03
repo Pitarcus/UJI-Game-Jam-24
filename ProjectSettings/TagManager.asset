@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GrassPainter
   - StickyBall
+  - GameManager
   layers:
   - Default
   - TransparentFX

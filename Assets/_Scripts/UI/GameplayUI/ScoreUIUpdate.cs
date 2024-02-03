@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ScoreUpdate : MonoBehaviour
+public class ScoreUIUpdate : MonoBehaviour
 {
     private StickyBallMechanic stickyBall;
    
