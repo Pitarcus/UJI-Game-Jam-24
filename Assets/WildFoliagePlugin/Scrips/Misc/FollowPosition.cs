@@ -39,6 +39,7 @@ public class FollowPosition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (!followRotation)
         {
             transform.rotation = originalRotation;
@@ -46,7 +47,7 @@ public class FollowPosition : MonoBehaviour
         if(followFloored)
         {
             transform.position = new Vector3(Mathf.Floor(target.position.x * x + offset.x * offsetX) + 0.5f,
-                                         Mathf.Floor(target.position.y * y + offset.y * offsetY) + 0.5f,
+                                         Mathf.Floor(target.position.y * y + offset.y * offsetY * target.localScale.y) + 0.5f,
                                          Mathf.Floor(target.position.z * z + offset.z * offsetZ) + 0.5f);
         }
         else if(followSmooth)
@@ -58,7 +59,13 @@ public class FollowPosition : MonoBehaviour
         }
         else
         {
-            transform.position = new Vector3(target.position.x * x + offset.x * offsetX, target.position.y * y + offset.y * offsetY, target.position.z * z + offset.z * offsetZ);
+            transform.position = new Vector3(target.position.x * x + offset.x * offsetX, target.position.y * y + offset.y * offsetY
+                , target.position.z * z + offset.z * offsetZ);
         }
+    }
+
+    public void IncreaseYOffset()
+    {
+        offset.y -= 0.5f;
     }
 }

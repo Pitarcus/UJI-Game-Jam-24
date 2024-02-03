@@ -9,7 +9,7 @@ public class StickyBallMechanic : MonoBehaviour
     [SerializeField] public int sizeLevel = 1;
 
     [SerializeField] public int[] levelLimits;  // The limits to which the level increases
-
+    [SerializeField] public float[] ballColliderSizes;  // The limits to which the level increases
 
     [SerializeField] public UnityEvent<int> onIncreaseSize;  // When catching an object that sticks to the ball. returns current size
     [SerializeField] public UnityEvent<int> onLevelUp;   // When leveling up, and increasing the radius of the camera etc. returns current level
@@ -17,6 +17,7 @@ public class StickyBallMechanic : MonoBehaviour
 
     // Private memebers
     private PlayerMovement _ballMovement; // When going up levels, the movement should be slower and clunkier??
+    private SphereCollider _sphereCollider;
 
     private int currentLevel = 0;   // Index to the levelLimits array
 
@@ -32,6 +33,9 @@ public class StickyBallMechanic : MonoBehaviour
         {
             Destroy(this);
         }
+
+        _sphereCollider = GetComponent<SphereCollider>();
+        _ballMovement = GetComponent<PlayerMovement>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -48,6 +52,8 @@ public class StickyBallMechanic : MonoBehaviour
                 IncreaseSize(collisionObject.size);
                 collisionObject.ManageObjectStuck();
             }
+
+            Debug.Log(currentLevel);
 
             if (currentLevel <= levelLimits.Length - 1)
             {
@@ -71,8 +77,10 @@ public class StickyBallMechanic : MonoBehaviour
     public void IncreaseLevel()
     {
         currentLevel += 1;
-        onLevelUp.Invoke(currentLevel);
 
-        Debug.Log("Increased level to: " + currentLevel);
+        _sphereCollider.radius = ballColliderSizes[currentLevel - 1];
+        _ballMovement.moveSpeed += 2;
+
+        onLevelUp.Invoke(currentLevel);
     }
 }

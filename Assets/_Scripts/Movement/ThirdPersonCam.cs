@@ -46,7 +46,12 @@ public class ThirdPersonCam : MonoBehaviour
        // Vector3 inputDir = _orientation.forward * verticalInput + _orientation.right * horizontalInput;
 
         _playerGeo.forward = Vector3.Slerp(_playerGeo.forward, viewDir.normalized, Time.deltaTime * rotationSpeed);
-        _playerGeo.position = Vector3.Lerp(_playerGeo.position, _rb.transform.position - _orientation.forward * radius, movementSpeed);
+
+        Vector3 newPositionVector = _rb.transform.position - _orientation.forward * radius;
+
+        _playerGeo.position = Vector3.Lerp(_playerGeo.position,
+            new Vector3(newPositionVector.x, _playerGeo.position.y, newPositionVector.z),
+            movementSpeed);
     }
 
     public void IncreasePositionRadius(int currentLevel)
