@@ -10,21 +10,29 @@ public class SceneJump : MonoBehaviour
     private Animator transition;
     [SerializeField]
     private float transitionTime;
+    [SerializeField]
+    private bool asyncLoad = true;
 
-    private bool chanching = false;
+    private bool changing = false;
 
     private void Start()
     {
-        chanching = false;
+        changing = false;
     }
     public void ChangeScene(int index)
     {
-        if (!chanching)
+        if (!changing)
         {
-            chanching = true;
+            changing = true;
             Time.timeScale = 1;
-            transition.SetTrigger("Start");
-            StartCoroutine(LoadLevel(index));
+            if (transition != null)
+            {
+                transition.SetTrigger("Start");
+            }
+            if (asyncLoad)
+                StartCoroutine(LoadLevel(index));
+            else
+                LoadLevelImmeditate(index);
         }
     }
     IEnumerator LoadLevel(int levelIndex)
@@ -41,5 +49,10 @@ public class SceneJump : MonoBehaviour
             yield return null;
         // Wait a frame so every Awake and Start method is called
         yield return new WaitForEndOfFrame();
+    }
+
+    void LoadLevelImmeditate(int levelIndex)
+    {
+        SceneManager.LoadScene(levelIndex, LoadSceneMode.Single);
     }
 }

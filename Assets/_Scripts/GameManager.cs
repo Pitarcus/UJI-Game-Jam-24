@@ -20,8 +20,18 @@ public class GameManager : MonoBehaviour
 
     private StickyBallMechanic _stickyBall;
 
+    public static GameManager Instance { get; private set; }
+
     private void Awake()
     {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            GameObject.Destroy(this);
+        }
         _stickyBall = GameObject.FindGameObjectWithTag("StickyBall").GetComponent<StickyBallMechanic>();
     }
 

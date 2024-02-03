@@ -28,7 +28,12 @@ public class ThirdPersonCam : MonoBehaviour
         _mainCameraTransform = Camera.main.transform;
     }
 
-  
+    public void StopScript()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        this.enabled = false;
+    }
+
     void Update()
     {
         Vector3 viewDir = _player.position - new Vector3(_mainCameraTransform.position.x, _player.position.y, _mainCameraTransform.position.z);
@@ -54,4 +59,5 @@ public class ThirdPersonCam : MonoBehaviour
     {
         radius = value;
     }
+
 }
