@@ -13,7 +13,7 @@ void GetMainLightData_float(float3 WorldPos, out half3 direction, out half3 colo
     // GetMainLight defined in Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl
     half4 shadowCoord = TransformWorldToShadowCoord(WorldPos);
     Light mainLight = GetMainLight(shadowCoord);
-    direction = mainLight.direction;
+    direction = -mainLight.direction;
     color = mainLight.color;
     distanceAttenuation = mainLight.distanceAttenuation;
     shadowAttenuation = mainLight.shadowAttenuation;

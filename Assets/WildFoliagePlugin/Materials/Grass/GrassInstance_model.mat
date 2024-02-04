@@ -272,6 +272,7 @@ Material:
     - _Rounded_Normals: 0
     - _SSSPunchIntensity: 0.4
     - _SSSPunchScale: 0.7
+    - _SaticWindBladeHashIntensity: 1.5
     - _Scale: 1.06
     - _ScaleY: 1.2
     - _Smoothness: 0.8
@@ -279,6 +280,7 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _StaticWindDisplacementMultiplier: 1
+    - _StaticWindXZMultiplier: 1
     - _StaticWindY: -0.5
     - _Surface: 0
     - _ViewDirectionShiftIntensity: 0.2
