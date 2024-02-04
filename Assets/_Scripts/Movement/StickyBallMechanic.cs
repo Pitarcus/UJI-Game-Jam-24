@@ -53,14 +53,13 @@ public class StickyBallMechanic : MonoBehaviour
 
     public void IncreaseSize(int size, StickableObject collisionObject)
     {
-
-        if (size <= sizeLevel)
+        Debug.Log(sizeLevel/4 + " object: " + collisionObject.size);
+        if (size <= sizeLevel / 4 || sizeLevel < 20 && size < 5)
         {
             sizeLevel += size;
             collisionObject.ManageObjectStuck();
         }
 
-        Debug.Log(levelLimits.Length);
         if (currentLevel < levelLimits.Length)
         {
             Debug.Log("Checking current level limits");

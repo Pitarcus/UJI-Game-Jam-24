@@ -38,7 +38,7 @@ public class StickableObject : MonoBehaviour
 
         transform.parent = stickyBall.transform;
 
-        stickyBall.onLevelUp.AddListener(SetToCanStick);
+        //  stickyBall.onLevelUp.AddListener(SetToCanStick);
     }
 
 
