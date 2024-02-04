@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 294921510344590901}
   - component: {fileID: 7641731610075344960}
   - component: {fileID: 6767690389664602283}
+  - component: {fileID: -1817995173563934963}
   m_Layer: 0
   m_Name: Pencil
   m_TagString: Untagged
@@ -99,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ed8a8757769f94496046e50e68f5dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 1
+  size: 25
 --- !u!65 &6767690389664602283
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -121,6 +122,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.73, y: 1.68, z: 28.8}
   m_Center: {x: 0, y: 0.0000019073486, z: 0.7}
+--- !u!54 &-1817995173563934963
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6130425941914908344}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &7765757923358354857
 GameObject:
   m_ObjectHideFlags: 0

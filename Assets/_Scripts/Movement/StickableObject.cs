@@ -9,6 +9,7 @@ public class StickableObject : MonoBehaviour
     [SerializeField] public int size = 1;
 
     private Collider stickCollider;
+    private Rigidbody rb;
 
     private bool canStick = false;
 
@@ -19,6 +20,7 @@ public class StickableObject : MonoBehaviour
     {
         stickCollider = GetComponent<Collider>();
         stickyBall = GameObject.FindGameObjectWithTag("StickyBall").GetComponent<StickyBallMechanic>();
+        rb = GetComponent<Rigidbody>();
     }
 
     //public void ManageObjectStuck(Transform ballTransform)
@@ -31,6 +33,8 @@ public class StickableObject : MonoBehaviour
     public void ManageObjectStuck()
     {
         stickCollider.isTrigger = true;
+        if(rb != null)
+            rb.isKinematic = true;
 
         transform.parent = stickyBall.transform;
 
