@@ -1,6 +1,8 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using System;
 //using UnityEngine.InputSystem;
 
 public class SceneJump : MonoBehaviour
@@ -12,26 +14,95 @@ public class SceneJump : MonoBehaviour
     private float transitionTime;
     [SerializeField]
     private bool asyncLoad = true;
+    [SerializeField]
+    private bool asyncLoadWithLoadingScreen = false;
+    [SerializeField] private int SceneToUnload = 0;
 
-    private bool changing = false;
+    
+
+
+    // Private memebers
+    private bool _changing = false;
+    private float _sceneProgress = 0f;
+
+    private GameObject loadingScreen;
+    private Slider progressBar;
+
+    public static SceneJump Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            //Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        if(SceneManager.GetActiveScene().buildIndex == 0)
+            SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+
+        // DontDestroyOnLoad(gameObject);
+    }
 
     private void Start()
     {
-        changing = false;
+        _changing = false;
+
+        loadingScreen = SceneLoaderManager.instance.loadingScreen;
+        progressBar = SceneLoaderManager.instance.progressBar;
     }
-    public void ChangeScene(int index)
+
+    public void ChangeSceneSelf(int index)
     {
-        if (!changing)
+        if (!_changing)
         {
-            changing = true;
+            _changing = true;
+
             Time.timeScale = 1;
             if (transition != null)
             {
                 transition.SetTrigger("Start");
             }
+
             if (asyncLoad)
                 StartCoroutine(LoadLevel(index));
+
+            else if (asyncLoadWithLoadingScreen)
+                StartCoroutine(LoadLevelWithLoadingScreen(index));
+
             else
+                LoadLevelImmeditate(index);
+        }
+    }
+
+    public void ChangeScene(int index)
+    {
+        if(Instance != this)
+        {
+            Instance.ChangeScene(index);
+            Instance.SceneToUnload = SceneToUnload;
+            Debug.Log("Telling main scene manager to change scene");
+            Debug.Log(index);
+            return;
+        }
+        if (!_changing)
+        {
+            _changing = true;
+
+            Time.timeScale = 1;
+            if (transition != null)
+            {
+                transition.SetTrigger("Start");
+            }
+
+            if (asyncLoad)
+                StartCoroutine(LoadLevel(index));
+
+            else if (asyncLoadWithLoadingScreen)
+                StartCoroutine(LoadLevelWithLoadingScreen(index));
+
+            else 
                 LoadLevelImmeditate(index);
         }
     }
@@ -40,15 +111,41 @@ public class SceneJump : MonoBehaviour
         yield return new WaitForSeconds(transitionTime);
 
         Scene activeScene = SceneManager.GetActiveScene();
-
-        //SceneManager.LoadScene(levelIndex);
-        AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(levelIndex, LoadSceneMode.Single);
+        SceneManager.UnloadSceneAsync(SceneToUnload);
+        AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(levelIndex, LoadSceneMode.Additive);
 
         // Wait until the level finishes loading
         while (!asyncLoadLevel.isDone)
             yield return null;
         // Wait a frame so every Awake and Start method is called
         yield return new WaitForEndOfFrame();
+    }
+
+    IEnumerator LoadLevelWithLoadingScreen(int levelIndex)
+    {
+        loadingScreen.GetComponent<UIAnimatorSequence>().PlaySequence();
+
+        yield return new WaitForSeconds(transitionTime);
+
+        SceneManager.UnloadSceneAsync(SceneToUnload);
+        AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(levelIndex, LoadSceneMode.Additive);
+
+        // Wait until the level finishes loading
+        while (!asyncLoadLevel.isDone)
+        {
+            _sceneProgress += asyncLoadLevel.progress;
+            _sceneProgress *= 100;
+
+            progressBar.value = _sceneProgress;
+
+            yield return null;
+        }
+
+
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(1f);
+
+        loadingScreen.GetComponent<UIAnimatorSequence>().PlaySequence();
     }
 
     void LoadLevelImmeditate(int levelIndex)

@@ -15,6 +15,9 @@ public class GrassMaskDisplayer : MonoBehaviour
 
     private void OnValidate()   // Script load
     {
+        if (!Application.isEditor || Application.isPlaying)
+            return;
+
         // Get displayer
         GameObject child = transform.GetChild(0).gameObject;
         decalProjector = child.GetComponent<DecalProjector>();
@@ -46,18 +49,24 @@ public class GrassMaskDisplayer : MonoBehaviour
 
     private void OnEnable()
     {
+        if (!Application.isEditor || Application.isPlaying)
+            return;
         Selection.selectionChanged += ToggleDecal;
         ToggleDecal();
     }
 
     private void OnDisable()
     {
+        if (!Application.isEditor || Application.isPlaying)
+            return;
         Selection.selectionChanged -= ToggleDecal;
         textureObject.onInitFinished.RemoveListener(InitDisplayer);
     }
 
     private void OnDestroy()
     {
+        if (!Application.isEditor || Application.isPlaying)
+            return;
         Selection.selectionChanged -= ToggleDecal;
         textureObject.onInitFinished.RemoveListener(InitDisplayer);
     }

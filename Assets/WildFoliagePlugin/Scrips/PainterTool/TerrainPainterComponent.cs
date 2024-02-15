@@ -94,6 +94,8 @@ public class TerrainPainterComponent : MonoBehaviour
         else
             transform.localPosition = new Vector3(0, 0, 0);
 
+        if (!Application.isEditor || Application.isPlaying)
+            return;
         onInitFinished.Invoke();
 
     }

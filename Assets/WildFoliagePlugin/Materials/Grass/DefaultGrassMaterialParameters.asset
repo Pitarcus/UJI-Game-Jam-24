@@ -31,7 +31,7 @@ MonoBehaviour:
   bendRandomnessScale: 20
   baseWindDisplacement: 0.03
   baseWindYDisplacement: 0
-  staticWindYMultiplier: -0.7
+  staticWindYMultiplier: -1
   staticWindXZMultiplier: 1
   staticWindBladeHashIntensity: 0.4
   dynamicWindStrength: 1.2
