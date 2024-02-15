@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 1908875349225706964}
   - component: {fileID: 5185496198354365381}
   - component: {fileID: 8072305067170896593}
+  - component: {fileID: 6738147669756874294}
   m_Layer: 11
   m_Name: SmartPhone_Screen
   m_TagString: Untagged
@@ -208,6 +209,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5.4, y: 10.76, z: 0.66}
   m_Center: {x: 0.0061217546, y: -2.9739127, z: -0.46}
+--- !u!54 &6738147669756874294
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133033591241079855}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &5797358185281276070
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Scripting;
 
 public class StickableObject : MonoBehaviour
@@ -15,6 +16,8 @@ public class StickableObject : MonoBehaviour
 
     private StickyBallMechanic stickyBall;
 
+    public UnityEvent onStick;
+
 
     private void Awake()
     {
@@ -23,19 +26,9 @@ public class StickableObject : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    //public void ManageObjectStuck(Transform ballTransform)
-    //{
-    //    stickCollider.isTrigger = true;
-
-    //    transform.parent = ballTransform;
-    //}
 
     public void ManageObjectStuck()
     {
-        //if (stickCollider is not MeshCollider)
-        //{
-        //    stickCollider.isTrigger = true;
-        //}
         stickCollider.enabled = false;
 
         if (rb != null)
@@ -45,22 +38,10 @@ public class StickableObject : MonoBehaviour
 
         transform.parent = stickyBall.transform;
 
+        onStick.Invoke();
         //  stickyBall.onLevelUp.AddListener(SetToCanStick);
     }
 
-
-    // When entering another object it is available for sticking
-    private void OnTriggerEnter(Collider other)
-    {
-        if(!canStick)
-            return;
-
-        StickableObject stickableObject = other.gameObject.GetComponent<StickableObject>();
-        if (stickableObject != null)
-        {
-            stickyBall.IncreaseSize(stickableObject.size, stickableObject);
-        }
-    }
 
     public void SetToCanStick(int currentLevel)
     {
