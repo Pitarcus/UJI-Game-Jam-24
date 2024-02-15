@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2206017994741104533}
   - component: {fileID: 4419431841864928680}
   - component: {fileID: 2867849965159641122}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SmartPhone_Screen 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 1908875349225706964}
   - component: {fileID: 5185496198354365381}
   - component: {fileID: 8072305067170896593}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SmartPhone_Screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,8 +113,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6351450700090139397}
   - {fileID: 5287733548280119641}
@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ed8a8757769f94496046e50e68f5dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 50
+  size: 125
 --- !u!65 &8072305067170896593
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 529243590883300628}
   - component: {fileID: 1770718274071302319}
   - component: {fileID: 4525253754421568616}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SmartPhone_Screen 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -302,7 +302,7 @@ GameObject:
   - component: {fileID: 8849040057442525081}
   - component: {fileID: 2934223262232003893}
   - component: {fileID: 5700062763204727311}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SmartPhone_Screen 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -385,7 +385,7 @@ GameObject:
   - component: {fileID: 5287733548280119641}
   - component: {fileID: 239038036798360253}
   - component: {fileID: 3487964347416072068}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SmartPhone_Screen 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -468,7 +468,7 @@ GameObject:
   - component: {fileID: 329830742131789432}
   - component: {fileID: 6121959887069425608}
   - component: {fileID: 8621517559617322760}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SmartPhone_Screen 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -551,7 +551,7 @@ GameObject:
   - component: {fileID: 6351450700090139397}
   - component: {fileID: 5874716413519029513}
   - component: {fileID: 2934306019464953502}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SmartPhone_Screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}

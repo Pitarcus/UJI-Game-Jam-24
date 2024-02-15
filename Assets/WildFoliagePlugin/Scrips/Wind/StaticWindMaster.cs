@@ -38,7 +38,12 @@ public class StaticWindMaster : MonoBehaviour
         UpdateGlobalVariables();
     }
 
-   
+    private void Start()
+    {
+        UpdateGlobalVariables();
+    }
+
+
     void UpdateGlobalVariables()
     {
         Shader.SetGlobalFloat(windStrengthId, windStrength);

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8150713358514058016}
   - component: {fileID: 1621194405162414106}
   - component: {fileID: 3066374167280106155}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: JaraPetal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0.32, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -118,8 +118,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.89, y: 4.91, z: 0.49}
-  m_Center: {x: -0.31, y: 0.09837081, z: -0.14}
+  m_Size: {x: 4.89, y: 4.91, z: 0.52}
+  m_Center: {x: -0.31, y: 0.09837081, z: -0.4}
 --- !u!54 &3066374167280106155
 Rigidbody:
   m_ObjectHideFlags: 0

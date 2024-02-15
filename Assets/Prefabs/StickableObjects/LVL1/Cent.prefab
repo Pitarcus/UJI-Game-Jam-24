@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 7641866927941308106}
   - component: {fileID: 5378279376976350587}
   - component: {fileID: 1700791013437978957}
-  - component: {fileID: -6505386822200255426}
-  m_Layer: 0
+  - component: {fileID: 8640937263578483561}
+  m_Layer: 11
   m_Name: Cent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.4, y: 1.4, z: 0.1}
   m_Center: {x: 0, y: 0, z: -0.123448}
---- !u!54 &-6505386822200255426
+--- !u!54 &8640937263578483561
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

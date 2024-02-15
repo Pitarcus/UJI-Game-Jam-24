@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 808987963515114092}
   - component: {fileID: 1639791566121005406}
   - component: {fileID: 1720721037735537608}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Orange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ed8a8757769f94496046e50e68f5dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 50
+  size: 125
 --- !u!65 &1720721037735537608
 BoxCollider:
   m_ObjectHideFlags: 0

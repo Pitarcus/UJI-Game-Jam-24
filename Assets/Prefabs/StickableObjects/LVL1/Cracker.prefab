@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 4481229484717024146}
   - component: {fileID: 7343356142760766302}
   - component: {fileID: 8559495605704576671}
-  - component: {fileID: -6052482468362397820}
-  m_Layer: 0
+  - component: {fileID: -5507682518816846059}
+  m_Layer: 11
   m_Name: Cracker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.2, y: 1.24, z: 0.27}
   m_Center: {x: 0.01027292, y: -0.0103934435, z: -0.17046675}
---- !u!54 &-6052482468362397820
+--- !u!54 &-5507682518816846059
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

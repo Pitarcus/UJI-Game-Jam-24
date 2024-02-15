@@ -7,6 +7,9 @@ TagManager:
   - GrassPainter
   - StickyBall
   - GameManager
+  - LightManager
+  - HUD
+  - GameMode
   layers:
   - Default
   - TransparentFX
@@ -18,8 +21,8 @@ TagManager:
   - PositionParticles
   - Player
   - Ball
-  - 
-  - 
+  - Sticker
+  - ObjectStickable
   - 
   - 
   - 

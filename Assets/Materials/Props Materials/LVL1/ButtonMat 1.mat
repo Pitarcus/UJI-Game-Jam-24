@@ -19,7 +19,7 @@ Material:
   - MAIN_LIGHTS_CALCULATE_SHADOWS
   - _SOFT_SHADOWS
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -105,6 +105,7 @@ Material:
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
+    - _CastShadows: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
@@ -143,7 +144,9 @@ Material:
     - _ToonCutoffPoint: 0.2
     - _UseEmission: 0
     - _WorkflowMode: 1
+    - _ZTest: 4
     - _ZWrite: 1
+    - _ZWriteControl: 0
     m_Colors:
     - _BaseColor: {r: 0.69411767, g: 1, b: 0.99732983, a: 1}
     - _Color: {r: 1, g: 1, b: 0.60754716, a: 1}

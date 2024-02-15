@@ -12,6 +12,7 @@ public class ToonShaderGUI : ShaderGUI
     private ShadingStyle _shadingStyle;
 
     private bool _toonPropsVisible = true;
+    private bool defaultProperties = false;
     private bool _emission;
 
     private const string SkinKeyword = "_SHADING_STYLE_SKIN_AND_TEXTILES";
@@ -99,6 +100,13 @@ public class ToonShaderGUI : ShaderGUI
             materialEditor.RangeProperty(FindProperty("_ShadowsFloor", properties), "Shadows floor value");
             materialEditor.RangeProperty(FindProperty("_StrongRimStrength", properties), "Strong rim strength");
             EditorGUI.indentLevel--;
+        }
+
+        defaultProperties = EditorGUILayout.Foldout(defaultProperties, "Default editor", EditorStyles.foldoutHeader);
+
+        if (defaultProperties)
+        {
+            base.OnGUI(materialEditor, properties);
         }
     }
 

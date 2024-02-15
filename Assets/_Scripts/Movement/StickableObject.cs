@@ -32,9 +32,16 @@ public class StickableObject : MonoBehaviour
 
     public void ManageObjectStuck()
     {
-        stickCollider.isTrigger = true;
-        if(rb != null)
+        //if (stickCollider is not MeshCollider)
+        //{
+        //    stickCollider.isTrigger = true;
+        //}
+        stickCollider.enabled = false;
+
+        if (rb != null)
+        {
             rb.isKinematic = true;
+        }
 
         transform.parent = stickyBall.transform;
 

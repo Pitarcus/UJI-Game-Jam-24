@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -64,8 +65,8 @@ public class FollowPosition : MonoBehaviour
         }
     }
 
-    public void IncreaseYOffset()
+    public void IncreaseYOffset(float yOffset)
     {
-        offset.y -= 0.5f;
+        offset.y -= yOffset;
     }
 }

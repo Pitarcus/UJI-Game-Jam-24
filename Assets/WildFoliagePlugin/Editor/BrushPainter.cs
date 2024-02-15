@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 
@@ -157,3 +158,4 @@ public class BrushPainter : EditorWindow
         GUI.DrawTexture(previewRect, maskTexture, ScaleMode.ScaleToFit);
     }
 }
+#endif

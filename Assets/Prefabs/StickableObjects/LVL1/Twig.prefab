@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 8509113854976845775}
   - component: {fileID: 248113284341801316}
   - component: {fileID: 8422830255606753201}
-  - component: {fileID: 5208125391654104433}
-  m_Layer: 0
+  - component: {fileID: -1524566323355580628}
+  m_Layer: 11
   m_Name: Twig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.28, y: 1.97, z: 0.21}
   m_Center: {x: 0.009333439, y: -0.008219125, z: -0.028919414}
---- !u!54 &5208125391654104433
+--- !u!54 &-1524566323355580628
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

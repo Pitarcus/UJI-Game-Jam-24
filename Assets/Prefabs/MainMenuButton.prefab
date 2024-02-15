@@ -291,8 +291,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Play
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d82ddbe64d588924588865d65e581812, type: 2}
-  m_sharedMaterial: {fileID: -4626751068375899716, guid: d82ddbe64d588924588865d65e581812,
+  m_fontAsset: {fileID: 11400000, guid: 0c216b999ce792941add76d5abee04b3, type: 2}
+  m_sharedMaterial: {fileID: -4626751068375899716, guid: 0c216b999ce792941add76d5abee04b3,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -323,7 +323,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
   m_fontSizeMax: 0
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -468,7 +468,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 4200612312542674511}
   transformToMove: {fileID: 0}
-  animationType: 2
+  animationType: 3
   transitionTime: 0.2
   easingType: 4
   delay: 0
@@ -477,7 +477,9 @@ MonoBehaviour:
   onUIAnimationFinished:
     m_PersistentCalls:
       m_Calls: []
+  toScale: {x: 0, y: 0, z: 0}
   toPosition: {x: 0, y: 0}
+  shakeStrength: 0
 --- !u!114 &8295860572608887639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,12 +494,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 4200612312542674511}
   transformToMove: {fileID: 0}
-  animationType: 2
+  animationType: 3
   transitionTime: 0.2
   easingType: 4
   delay: 0
   animateOnEnable: 0
-  playInverted: 0
+  playInverted: 1
   onUIAnimationFinished:
     m_PersistentCalls:
       m_Calls:
@@ -513,7 +515,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  toScale: {x: 0, y: 0, z: 0}
   toPosition: {x: 0, y: 0}
+  shakeStrength: 0
 --- !u!1 &5424335172266896859
 GameObject:
   m_ObjectHideFlags: 0
@@ -5278,7 +5282,7 @@ ParticleSystemRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5424335172266896859}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1

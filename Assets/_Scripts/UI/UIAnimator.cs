@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 
 [System.Serializable]
 public class UIAnimator : MonoBehaviour
@@ -13,6 +14,7 @@ public class UIAnimator : MonoBehaviour
     {
         scale,
         move,
+        shake,
         alpha
 
     }
@@ -31,22 +33,28 @@ public class UIAnimator : MonoBehaviour
 
     [SerializeField] public UnityEvent onUIAnimationFinished;
 
+
+    [Header("Parameters for Move")]
+    [SerializeField] public Vector3 toScale;
+
     [Header("Parameters for Alpha")]
 
     [Header("Parameters for Move")]
     [SerializeField] public Vector2 toPosition;
     private Vector2 _originalPosition;
 
+    [Header("Parameters for Shake")]
+    public float shakeStrength;
 
     private void OnEnable()
     {
-        if(animateOnEnable)
-        {
-            AnimateUI();
-        }
-        if(animationType == UIAnimationType.move) 
+        if (animationType == UIAnimationType.move)
         {
             _originalPosition = transformToMove.anchoredPosition;
+        }
+        if (animateOnEnable)
+        {
+            AnimateUI();
         }
     }
 
@@ -55,11 +63,16 @@ public class UIAnimator : MonoBehaviour
         switch (animationType)
         {
             case UIAnimationType.scale:
+                Scale();
                 break;
 
             case UIAnimationType.move:
                 MoveTransform();
-                break; 
+                break;
+
+            case UIAnimationType.shake:
+                Shake();
+                break;
 
             case UIAnimationType.alpha:
                 AnimateGroupAlpha();
@@ -72,8 +85,16 @@ public class UIAnimator : MonoBehaviour
         onUIAnimationFinished?.Invoke();
     }
 
-    #region MoveAnimation
+    #region ScaleAnimation
 
+    private void Scale()
+    {
+        transformToMove.DOScale(toScale, transitionTime).SetEase(easingType).SetDelay(delay);
+    }
+
+    #endregion
+
+    #region MoveAnimation
     private void MoveTransform()
     {
         if(!playInverted)
@@ -82,6 +103,13 @@ public class UIAnimator : MonoBehaviour
             transformToMove.DOAnchorPos(_originalPosition, transitionTime).SetEase(easingType).SetDelay(delay).OnComplete(UIAnimationFinishedInvoke);
     }
 
+    #endregion
+
+    #region ScaleAnimation
+    private void Shake()
+    {
+        transformToMove.DOShakeAnchorPos(transitionTime, shakeStrength).SetEase(easingType).SetDelay(delay);
+    }
     #endregion
 
     #region AlphaAnimation
@@ -110,7 +138,7 @@ public class UIAnimator : MonoBehaviour
 }
 
 
-
+#if UNITY_EDITOR
 // -------------------- CUSTOM EDITOR FOR THE SCRIPT ---------------------
 [CustomEditor(typeof(UIAnimator))]
 public class UIAnimatorEditor : Editor
@@ -130,6 +158,8 @@ public class UIAnimatorEditor : Editor
 
     // move specific properties
     SerializedProperty toPosition;
+    SerializedProperty shakeStrength;
+    SerializedProperty toScale;
 
     // events
     SerializedProperty onUIAnimationFinished;
@@ -148,10 +178,12 @@ public class UIAnimatorEditor : Editor
         transitionTime = serializedObject.FindProperty("transitionTime");
         delay = serializedObject.FindProperty("delay");
         animateOnEnable = serializedObject.FindProperty("animateOnEnable");
-        playInverted = serializedObject.FindProperty("playInverted");
+        shakeStrength = serializedObject.FindProperty("shakeStrength");
 
 
         toPosition = serializedObject.FindProperty("toPosition");
+        playInverted = serializedObject.FindProperty("playInverted");
+        toScale = serializedObject.FindProperty("toScale");
 
         onUIAnimationFinished = serializedObject.FindProperty("onUIAnimationFinished");
     }
@@ -166,7 +198,9 @@ public class UIAnimatorEditor : Editor
             EditorGUILayout.PropertyField(canvasGroup);
 
         }
-        else if (myScript.animationType == UIAnimator.UIAnimationType.move)
+        else if (myScript.animationType == UIAnimator.UIAnimationType.move ||
+            myScript.animationType == UIAnimator.UIAnimationType.shake ||
+            myScript.animationType == UIAnimator.UIAnimationType.scale)
         {
             EditorGUILayout.PropertyField(transformToMove);
         }
@@ -176,7 +210,7 @@ public class UIAnimatorEditor : Editor
         // Parameters
         EditorGUILayout.PropertyField(animationType);
         EditorGUILayout.PropertyField(transitionTime);
-        EditorGUILayout.PropertyField(easingType);
+        EditorGUILayout.PropertyField(easingType); 
         EditorGUILayout.PropertyField(delay);
         EditorGUILayout.PropertyField(animateOnEnable);
         EditorGUILayout.PropertyField(playInverted);
@@ -189,6 +223,14 @@ public class UIAnimatorEditor : Editor
         {
             EditorGUILayout.PropertyField(toPosition);
         }
+        else if (myScript.animationType == UIAnimator.UIAnimationType.shake)
+        {
+            EditorGUILayout.PropertyField(shakeStrength);
+        }
+        else if (myScript.animationType == UIAnimator.UIAnimationType.scale)
+        {
+            EditorGUILayout.PropertyField(toScale);
+        }
 
         EditorGUILayout.Space(5);
 
@@ -198,3 +240,4 @@ public class UIAnimatorEditor : Editor
         serializedObject.ApplyModifiedProperties();
     }
 }
+#endif

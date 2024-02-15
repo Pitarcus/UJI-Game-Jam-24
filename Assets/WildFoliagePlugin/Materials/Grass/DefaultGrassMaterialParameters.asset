@@ -19,7 +19,7 @@ MonoBehaviour:
   smoothness: 0.7
   ao: 0.7
   worldUVTiling: 0.65
-  scaleY: 4
+  scaleY: 3.5
   randomYScaleNoise: 0.06
   minRandomY: 0.55
   maxRandomY: 2.9

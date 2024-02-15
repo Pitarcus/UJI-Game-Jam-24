@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 339457952975672044}
   - component: {fileID: 475971512890398080}
   - component: {fileID: 2968861534957403750}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PenCap
   m_TagString: Untagged
   m_Icon: {fileID: 0}

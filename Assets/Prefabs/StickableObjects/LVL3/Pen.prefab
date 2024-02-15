@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1298640214304759082}
   - component: {fileID: 3900708240205971220}
   - component: {fileID: 8810012151727944816}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Pencil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 3741881403424443062}
   - component: {fileID: 7825782491416850657}
   - component: {fileID: 5748150346085806012}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Pencil 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 637776661091124151}
   - component: {fileID: 3461695366438907616}
   - component: {fileID: 4967914908722356934}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Pen
   m_TagString: Untagged
   m_Icon: {fileID: 0}

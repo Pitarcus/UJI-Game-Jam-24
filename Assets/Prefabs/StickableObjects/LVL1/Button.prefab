@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 8402403453174530023}
   - component: {fileID: 657347870676087077}
   - component: {fileID: 2456820285586913679}
-  - component: {fileID: 3263234676000966887}
-  m_Layer: 0
+  - component: {fileID: -3541338051885141211}
+  m_Layer: 11
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4248,7 +4248,7 @@ MonoBehaviour:
   m_OriginalMeshObject: {fileID: -5447036705194824928, guid: 7927a943fe15aeb4db2e884948c18d36,
     type: 3}
   m_Mode: 0
---- !u!54 &3263234676000966887
+--- !u!54 &-3541338051885141211
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

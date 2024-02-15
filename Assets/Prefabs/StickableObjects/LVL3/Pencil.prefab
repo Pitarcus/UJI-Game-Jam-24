@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7641731610075344960}
   - component: {fileID: 6767690389664602283}
   - component: {fileID: -1817995173563934963}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Pencil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 3563531864506667802}
   - component: {fileID: 8515082557726770033}
   - component: {fileID: 4513720737862421909}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PencilGraphite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 4808579643677033609}
   - component: {fileID: 6550109091377887169}
   - component: {fileID: 2416814145186863133}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PencilTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -14,14 +14,24 @@ public class ThirdPersonCam : MonoBehaviour
     [Header("RollingBallGameParameters")]
     [SerializeField] private float radius;
     [SerializeField] private float[] radiusPerLevel;    // Starting from the first upgrade level
+    [SerializeField] private float[] YOffsetPerLevel;    // Starting from the first upgrade level
     [SerializeField] private float transitionTime;
     [Space]
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float movementSpeed;
 
     private Transform _mainCameraTransform;
+    private FollowPosition _followPosition;
 
     private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+
+        _mainCameraTransform = Camera.main.transform;
+        _followPosition = GetComponent<FollowPosition>();
+    }
+
+    private void OnEnable()
     {
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -31,7 +41,11 @@ public class ThirdPersonCam : MonoBehaviour
     public void StopScript()
     {
         Cursor.lockState = CursorLockMode.None;
-        this.enabled = false;
+    }
+
+    public void ResumeScript()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
@@ -65,4 +79,9 @@ public class ThirdPersonCam : MonoBehaviour
         radius = value;
     }
 
+
+    public void OffsetPlayerY(int currentLevel)
+    {
+        _followPosition.IncreaseYOffset(YOffsetPerLevel[currentLevel-1]);
+    }
 }

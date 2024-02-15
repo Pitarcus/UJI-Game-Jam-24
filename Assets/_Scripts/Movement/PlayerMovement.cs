@@ -48,13 +48,29 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 _moveDirection;
 
-    Rigidbody _rb;
+    private Rigidbody _rb;
+
+    public static PlayerMovement Instance;
 
     // Start is called before the first frame update
     void Awake()
     {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+
         _rb = GetComponent<Rigidbody>();
         _rb.freezeRotation = freezeRotation;
+    }
+
+    public Rigidbody GetRigidbody()
+    {
+        return _rb;
     }
 
     private void MovementInput()

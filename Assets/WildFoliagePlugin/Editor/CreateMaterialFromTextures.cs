@@ -3,7 +3,7 @@
 using UnityEngine;
 using UnityEditor;
 using System.Linq;
-
+#if UNITY_EDITOR
 public class CreateMaterialFromTextures : Editor
 {
     [MenuItem("Tools/CreateMaterialFromTextures")]
@@ -55,3 +55,4 @@ public class CreateMaterialFromTextures : Editor
         }
     }
 }
+#endif
