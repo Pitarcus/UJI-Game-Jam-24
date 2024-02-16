@@ -25,6 +25,7 @@ public class SceneJump : MonoBehaviour
     private bool _changing = false;
     private float _sceneProgress = 0f;
 
+   
     private GameObject loadingScreen;
     private Slider progressBar;
 
@@ -80,12 +81,13 @@ public class SceneJump : MonoBehaviour
     {
         if(Instance != this)
         {
-            Instance.ChangeScene(index);
             Instance.SceneToUnload = SceneToUnload;
+            Instance.ChangeScene(index);
             Debug.Log("Telling main scene manager to change scene");
             Debug.Log(index);
             return;
         }
+        Debug.Log("IM THE INSTANCE");
         if (!_changing)
         {
             _changing = true;
@@ -119,11 +121,14 @@ public class SceneJump : MonoBehaviour
             yield return null;
         // Wait a frame so every Awake and Start method is called
         yield return new WaitForEndOfFrame();
+
+        _changing = false;
     }
 
     IEnumerator LoadLevelWithLoadingScreen(int levelIndex)
     {
         loadingScreen.GetComponent<UIAnimatorSequence>().PlaySequence();
+        progressBar.value = 0;
 
         yield return new WaitForSeconds(transitionTime);
 
@@ -146,10 +151,15 @@ public class SceneJump : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         loadingScreen.GetComponent<UIAnimatorSequence>().PlaySequence();
+
+        _changing = false;
+        _sceneProgress = 0f;
     }
 
     void LoadLevelImmeditate(int levelIndex)
     {
         SceneManager.LoadScene(levelIndex, LoadSceneMode.Single);
+
+        _changing = false;
     }
 }
